@@ -24,7 +24,8 @@ jobs:
           echo "$PRIVATE_KEY" >> id_ed25519
           echo "$PUBLIC_KEY" >> id_ed25519.pub
           chmod 600 id_*
-          ssh-add id_ed25519
+          ssh-add -K id_ed25519
+          ssh-add -L
 
       - name: Test keys
         id: test_keys
