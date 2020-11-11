@@ -19,6 +19,7 @@ jobs:
         env:
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          REPO: ${{ secrets.REPO }}
         run: |
           mkdir ~/.ssh
           eval "$(ssh-agent -s)"
@@ -30,20 +31,5 @@ jobs:
           chmod 600 ~/.ssh/*
           ssh-add ~/.ssh/id_ed25519
           ssh-add -L
-
-      - name: Test keys
-        id: test_keys
-        shell: bash
-        run: |
-          eval "$(ssh-agent -s)"
-          ssh-add -L
-
-      - name: Push
-        id: push
-        shell: bash
-        env:
-          REPO: ${{ secrets.REPO }}
-        run: |
-          eval "$(ssh-agent -s)"
           git remote add LIVE "$REPO"
           git push LIVE main
