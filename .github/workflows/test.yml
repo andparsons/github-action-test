@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: Push
-      id: push
-      uses: actions/checkout@v2
-      with:
-        clean: false
-      run: |
-        echo "$(date +"%Y%m%d%H%M")"
+      - uses: actions/checkout@v2
+        with:
+          clean: false
+      - name: Push
+        id: push
+        run: |
+          echo "$(date +"%Y%m%d%H%M")"
