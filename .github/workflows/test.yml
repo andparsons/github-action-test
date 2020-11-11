@@ -30,6 +30,7 @@ jobs:
         id: test_keys
         shell: bash
         run: |
+          eval "$(ssh-agent -s)"
           ssh-add -L
 
       - name: Push
@@ -38,5 +39,6 @@ jobs:
         env:
           REPO: ${{ secrets.REPO }}
         run: |
+          eval "$(ssh-agent -s)"
           git remote add LIVE "$REPO"
           git push LIVE main
