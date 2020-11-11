@@ -16,7 +16,7 @@ jobs:
           persist-credentials: false
       - uses: spyoungtech/mirror-action@master
         with:
-          REMOTE: "ssh://beespoke@185.216.76.236:2020/home/beespoke/.repo"
+          REMOTE: ${{ secrets.REPO }}
           GIT_USERNAME: beespoke
           GIT_SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           GIT_SSH_PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
