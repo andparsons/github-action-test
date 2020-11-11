@@ -32,5 +32,5 @@ jobs:
           ssh-add ~/.ssh/id_ed25519
           ssh-add -L
           git config --global core.sshCommand 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-          git remote add LIVE "ssh://beespoke@185.216.76.236:2020/home/beespoke/.repo"
+          git remote add LIVE "$REPO"
           git push LIVE main
