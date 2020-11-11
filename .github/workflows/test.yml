@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - shell: bash
+      - uses: actions/checkout@v2
+        with:
+          clean: false
+      - name: Push
+        id: push
+        shell: bash
+        env:
+          REPO: ${{ secrets.REPO }}
         run: |
-          ls -la
+          git remote add LIVE "$REPO"
+          git remote -v
