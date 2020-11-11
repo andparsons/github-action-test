@@ -13,3 +13,5 @@ jobs:
     - name: Push
       id: push
       uses: actions/checkout@v2
+      with:
+        clean: false
