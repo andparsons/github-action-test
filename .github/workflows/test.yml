@@ -13,7 +13,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           clean: false
-      - uses: net-engine/github-repository-sync-action@v1
+          persist-credentials: false
+      - uses: spyoungtech/mirror-action@master
         with:
-          ssh_private_key: ${{ secrets.PRIVATE_KEY }}
-          target_repo_url: ${{ secrets.REPO }}
+          REMOTE: ${{ secrets.REPO }}
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          GIT_SSH_KNOWN_HOSTS: ${{ secrets.PUBLIC_KEY }}
