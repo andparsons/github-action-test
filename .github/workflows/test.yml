@@ -27,7 +27,6 @@ jobs:
           echo "$PUBLIC_KEY" >> ~/.ssh/id_ed25519.pub
           echo "Host *
               IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
-          cat ~/.ssh/config
           chmod 600 ~/.ssh/*
           ssh-add ~/.ssh/id_ed25519
           git config --global core.sshCommand 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
