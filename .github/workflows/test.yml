@@ -32,6 +32,4 @@ jobs:
           git config --global core.sshCommand 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
           git remote add LIVE "$REPO"
           git config pull.rebase false
-          git checkout main
-          git pull LIVE main
-          git push LIVE main
+          git push LIVE main --force
