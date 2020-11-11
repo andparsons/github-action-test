@@ -24,10 +24,13 @@ jobs:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           REPO: ${{ secrets.REPO }}
         run: |
+          export LANGUAGE=en_US.UTF-8
+          export LANG=en_US.UTF-8
+          export LC_ALL=en_US.UTF-8
           mkdir ~/.ssh
           echo "$PRIVATE_KEY" >> ~/.ssh/id_ed25519
           echo "$PUBLIC_KEY" >> ~/.ssh/id_ed25519.pub
           chmod 600 ~/.ssh/*
-          git config --global core.sshCommand 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no'
+          git config --local core.sshCommand 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no'
           git remote add LIVE "$REPO"
           git push LIVE
