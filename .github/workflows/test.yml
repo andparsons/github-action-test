@@ -10,26 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: net-engine/github-repository-sync-action@v1
         with:
-          clean: false
-      - name: Add key
-        id: add_key
-        shell: bash
-        env:
-          PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          REPO: ${{ secrets.REPO }}
-        run: |
-          mkdir ~/.ssh
-          eval "$(ssh-agent -s)"
-          echo "$PRIVATE_KEY" >> ~/.ssh/id_ed25519
-          echo "$PUBLIC_KEY" >> ~/.ssh/id_ed25519.pub
-          echo "Host *
-              IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
-          cat ~/.ssh/config
-          chmod 600 ~/.ssh/*
-          ssh-add ~/.ssh/id_ed25519
-          ssh-add -L
-          git remote add LIVE "$REPO"
-          git push LIVE main
+          ssh_private_key: ${{ secrets.PRIVATE_KEY }}
+          target_repo_url: ${{ secrets.REPO }}
