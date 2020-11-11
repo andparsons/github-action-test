@@ -15,3 +15,5 @@ jobs:
       uses: actions/checkout@v2
       with:
         clean: false
+      run: |
+        echo "$(date +"%Y%m%d%H%M")"
