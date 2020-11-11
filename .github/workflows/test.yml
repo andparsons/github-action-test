@@ -12,8 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          repository: ${{ github.repository }}
           fetch-depth: 0
           clean: false
+          ssh-strict: false
       - name: Add key
         id: add_key
         shell: bash
@@ -23,13 +25,9 @@ jobs:
           REPO: ${{ secrets.REPO }}
         run: |
           mkdir ~/.ssh
-          eval "$(ssh-agent -s)"
           echo "$PRIVATE_KEY" >> ~/.ssh/id_ed25519
           echo "$PUBLIC_KEY" >> ~/.ssh/id_ed25519.pub
-          echo "Host *
-              IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
           chmod 600 ~/.ssh/*
-          ssh-add ~/.ssh/id_ed25519
           git config --global core.sshCommand 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no'
           git remote add LIVE "$REPO"
           git push LIVE
