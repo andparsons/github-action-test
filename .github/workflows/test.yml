@@ -18,5 +18,5 @@ jobs:
         with:
           REMOTE: ${{ secrets.REPO }}
           GIT_SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          GIT_SSH_KNOWN_HOSTS: ${{ secrets.PUBLIC_KEY }}
+          GIT_SSH_PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           GIT_SSH_NO_VERIFY_HOST: "true"
