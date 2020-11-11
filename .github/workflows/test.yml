@@ -21,6 +21,7 @@ jobs:
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
+          eval "$(ssh-agent -s)"
           echo "$PRIVATE_KEY" >> id_ed25519
           echo "$PUBLIC_KEY" >> id_ed25519.pub
           ssh-add id_ed25519
