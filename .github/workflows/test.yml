@@ -13,11 +13,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           clean: false
-      - name: Push
-        id: push
+      - name: Add key
+        id: add_key
         shell: bash
         env:
-          REPO: ${{ secrets.REPO }}
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
@@ -26,5 +25,12 @@ jobs:
           echo "$PUBLIC_KEY" >> id_ed25519.pub
           chmod 600 id_*
           ssh-add id_ed25519
+
+      - name: Push
+        id: push
+        shell: bash
+        env:
+          REPO: ${{ secrets.REPO }}
+        run: |
           git remote add LIVE "$REPO"
           git push LIVE main
