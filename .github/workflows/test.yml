@@ -26,6 +26,12 @@ jobs:
           chmod 600 id_*
           ssh-add id_ed25519
 
+      - name: Test keys
+        id: test_keys
+        shell: bash
+        run: |
+          ssh-add -L
+
       - name: Push
         id: push
         shell: bash
