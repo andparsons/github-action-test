@@ -18,6 +18,11 @@ jobs:
         shell: bash
         env:
           REPO: ${{ secrets.REPO }}
+          PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
+          echo "$PRIVATE_KEY" >> ~/.ssh/id_ed25519
+          echo "$PUBLIC_KEY" >> ~/.ssh/id_ed25519.pub
+          ssh-add ~/.ssh/id_ed25519
           git remote add LIVE "$REPO"
           git push LIVE main
