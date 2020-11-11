@@ -25,9 +25,9 @@ jobs:
           echo "$PRIVATE_KEY" >> ~/.ssh/id_ed25519
           echo "$PUBLIC_KEY" >> ~/.ssh/id_ed25519.pub
           echo "Host *
-                IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
+              IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
           cat ~/.ssh/config
-          chmod 600 ~/.ssh/id_*
+          chmod 600 ~/.ssh/*
           ssh-add ~/.ssh/id_ed25519
           ssh-add -L
 
