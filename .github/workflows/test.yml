@@ -20,11 +20,12 @@ jobs:
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
+          mkdir ~/.ssh
           eval "$(ssh-agent -s)"
-          echo "$PRIVATE_KEY" >> id_ed25519
-          echo "$PUBLIC_KEY" >> id_ed25519.pub
+          echo "$PRIVATE_KEY" >> ~/.ssh/id_ed25519
+          echo "$PUBLIC_KEY" >> ~/.ssh/id_ed25519.pub
           chmod 600 id_*
-          ssh-add -K id_ed25519
+          ssh-add ~/.ssh/id_ed25519
           ssh-add -L
 
       - name: Test keys
