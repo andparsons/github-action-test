@@ -20,4 +20,4 @@ jobs:
           REPO: ${{ secrets.REPO }}
         run: |
           git remote add LIVE "$REPO"
-          git remote -v
+          git push LIVE main
